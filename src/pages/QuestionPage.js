@@ -10,6 +10,11 @@ function QuestionPage() {
     description:'',
     status:'pending'
   });
+  useEffect(() => {
+  fetch(`${BASE_URL}/tasks/${id}`)
+    .then(res=>res.json())
+    .then(data=>setTask(data));
+},[id]);
   const handleChange=(e) => {
     setTask({
       ...task,
