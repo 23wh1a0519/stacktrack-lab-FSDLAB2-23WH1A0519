@@ -21,11 +21,20 @@ function QuestionPage() {
       [e.target.name]: e.target.value
     });
   };
-  return (
+  const handleSubmit=async(e) => {
+    e.preventDefault();
+    await fetch(`${BASE_URL}/tasks/${id}`, {method: "PUT",
+      headers:{
+        "Content-Type": "application/json"
+      },
+      body:JSON.stringify(task)});
+    alert("Task Updated Successfully");
+  };
+  return(
     <div>
       <h1>Question Page</h1>
       <h2>Edit Task</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           name="title"
           value={task.title}
